@@ -5,10 +5,10 @@ module.exports = (response) => {
 	'angry': ['angry','frustrated','annoyed','hostile','angry','furious','irritable','irritated','fuming','displeased','rage','raging','wrath','sulky'],
 	'scared':['scared','panic','fearful','terrified','nervous','distressed','afraid','panicky','panicked','shaken','petrified','anxious','anxiety'],
 	'suicidal':['suicidal','kill my self','kms','suicide','destructive','very depressed','super depressed','so depressed']}
-	var suggestions = {'sad': ['want to see cute animal pictures', 'read a book','go on social media','watch a movie/tv show','play video games','try messaging a good friend', 'take a nap', 'try to find a quiet/isolated place','write a journal', 'have long-term suggestions'],
-	'angry':['take deep breaths','stay positive','find someone to rant to', 'find funny things that will make you laugh'],
-	'scared':['breath slowly/deeply','stop over thinking','think positively, like a friendly memory','take a walk', 'find someone to talk to', 'calm music/nature sounds','do relaxing muscle exercises'],
-	'suicidal':['call 1-800-273-8255 if you have thoughts about death or self-harm', 'talk to a trusted professional doctor or counselor']}
+	var suggestions = {'sad': {'short-term':['want to see cute animal pictures', 'read a book','go on social media','watch a movie/tv show','play video games','try messaging a good friend', 'take a nap', 'try to find a quiet/isolated place','write a journal'], 'long-term':['have long-term suggestions']},
+	'angry':{'short-term':['take deep breaths','stay positive','find someone to rant to', 'find funny things that will make you laugh']},
+	'scared':{'short-term':['stop over thinking','think positively, like a friendly memory','take a walk', 'find someone to talk to', 'calm music/nature sounds'], 'exercises':['do breathing exercises, do relaxing muscle exercises'], 'long-term':['have a long-term solution']},
+	'suicidal':{'short-term':['call 1-800-273-8255 if you have thoughts about death or self-harm', 'talk to a trusted professional doctor or counselor']}
 
 	for (var key in feelings){
 		console.log("Feel: "+ feel);
@@ -21,8 +21,13 @@ module.exports = (response) => {
 	return s;
 }
 
-function listing(list){
+function listing(dict){
 	s = ''
-	for (var i = 0; i < list.length-1; i++){ s += list[i] + ', ' }
-	return s+'or '+list[list.length-1]
+	for (key in dict){
+		list = dict[key]
+		for (i = 0; i<list.length; i+=1)
+			s+=list[i]
+
+	}
+	return s
 }
