@@ -23,7 +23,8 @@ module.exports = (event) => {
       var result;
       if(response.result.parameters.Feeling)
       {
-        const feelingIntent = require('feelings');
+        const feelingIntent = require('./feeling');
+        console.log("test")
         result = feelingIntent(response);
       }
       else
