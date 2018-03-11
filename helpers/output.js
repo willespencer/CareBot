@@ -7,8 +7,6 @@ module.exports = (response) => {
   // Define to JSON type
   var json = JSON.parse(contents);
 
-  var categories = [] //list of all categories (to avoid hardcoding)
-
   for (var key in json) { //loops through all eighth period ids
     if (json.hasOwnProperty(key)) { //makes sure it is an actual key
       if(opt == key)

@@ -21,27 +21,41 @@ module.exports = (event) => {
     const apiaiSession = apiAiClient.textRequest(message, { sessionId: 'crowdbotics_bot' });
     apiaiSession.on('response', (response) => {
       var result;
-      //console.log('output', response.result.parameters.output)
-      console.log(response.result);
-      
-      if(response.result.parameters.output)
-      {
-        const outputIntent = require('./output');
-        result = outputIntent(response);
+
+      //if(response.result.parameters.output)
+      var answer = response.result.resolvedQuery;
+
+      var json = require('./options.json');
+      //console.log(config.firstName + ' ' + config.lastName);
+
+      var outputBool = false;
+
+      for (var key in json) { //loops through all eighth period ids
+        if (json.hasOwnProperty(key)) { //makes sure it is an actual key
+          if(answer == key)
+          {
+            outputBool = true;
+            result = json[key];
+          }
+        }
       }
-      else if(response.result.parameters.Solution)
+
+      if(outputBool == false) //if it's not the last answer
       {
-        const solutionIntent = require('./solutions');
-        result = solutionIntent(response);
-      }
-      else if(response.result.parameters.Feeling)
-      {
-        const feelingIntent = require('./feeling');
-        result = feelingIntent(response);
-      }
-      else
-      {
-        result = response.result.fulfillment.speech;
+        if(response.result.parameters.Solution)
+        {
+          const solutionIntent = require('./solutions');
+          result = solutionIntent(response);
+        }
+        else if(response.result.parameters.Feeling)
+        {
+          const feelingIntent = require('./feeling');
+          result = feelingIntent(response);
+        }
+        else
+        {
+          result = response.result.fulfillment.speech;
+        }
       }
 
       sendTextMessage(senderId, result);
