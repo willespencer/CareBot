@@ -1,6 +1,6 @@
 module.exports = (response) => {
-	const feelings ={'sad': ['sad','depressed','despair','down','gloomy','melancholy','sorrow','sorrowful','grief','hurting', 'crying'],
-	'angry': ['angry','frustrated','annoyed','hostile','angry','furious','irritable','irritated','fuming','displeased','rage','raging','wrath','sulky'],
+	const feelings ={'sad': ['sad','depressed','despair','down','gloomy','melancholy','sorrow','sorrowful','grief','hurting', 'crying', 'tired', 'exhausted', 'sleepy'],
+	'angry': ['angry','frustrated','annoyed','hostile','furious','irritable','irritated','fuming','displeased','rage','raging','wrath','sulky'],
 	'scared':['scared','panic','fearful','terrified','nervous','distressed','afraid','panicky','panicked','shaken','petrified','anxious','anxiety'],
 	'suicidal':['suicidal','kill my self','kms','suicide','destructive','very depressed','super depressed','so depressed']}
 	const suggestions = {'sad': {'short-term':['See cute animal pictures', 'read a book','go on social media','watch a movie/tv show','play video games','message a good friend', 'take a nap', 'find a quiet/isolated place','write a journal'], 'long-term':['Set goals', 'keep a healthy diet', 'have a regular exercise routine', 'sleep more', 'have some (but not too many!) responsibilities on your plate']},
@@ -27,6 +27,6 @@ module.exports = (response) => {
 			s+= solutions[solutions.length-1];
 		}
 	}
-	s+= '?'
+	s+= '? Please type a suggestion word for word.'
 	return s;
 }

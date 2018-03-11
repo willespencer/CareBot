@@ -26,13 +26,12 @@ module.exports = (event) => {
       var answer = response.result.resolvedQuery;
 
       var json = require('./options.json');
-      //console.log(config.firstName + ' ' + config.lastName);
 
       var outputBool = false;
 
       for (var key in json) { //loops through all eighth period ids
         if (json.hasOwnProperty(key)) { //makes sure it is an actual key
-          if(answer == key)
+          if(answer.toLowerCase() == key.toLowerCase())
           {
             outputBool = true;
             result = json[key];
