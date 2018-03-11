@@ -10,11 +10,8 @@ module.exports = (response) => {
 
 	var s = "Out of the following, which would you like to do? ";
 	var feel = response.result.parameters.feelingContext; //feeling stated by user
-	console.log("Feel", feel)
 	var solution = response.result.parameters.Solution // solution stated
-	console.log("Solution", solution)
 	var solutions = suggestions[feel][solution]
-	console.log("Solutions", solutions)
 	if(solutions.length == 2)
 	{
 		s+= solutions[0] + " or " + solutions[1];
