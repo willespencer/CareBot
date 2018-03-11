@@ -21,10 +21,15 @@ module.exports = (event) => {
     const apiaiSession = apiAiClient.textRequest(message, { sessionId: 'crowdbotics_bot' });
     apiaiSession.on('response', (response) => {
       var result;
-      if(response.result.parameters.Feeling)
+      console.log(response.result.parameters.Solution);
+      if(response.result.parameters.Solution)
+      {
+        const solutionIntent = require('./solutions');
+        result = solutionIntent(response);
+      }
+      else if(response.result.parameters.Feeling)
       {
         const feelingIntent = require('./feeling');
-        console.log("test")
         result = feelingIntent(response);
       }
       else
